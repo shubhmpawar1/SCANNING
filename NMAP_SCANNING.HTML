@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMAP - Network Mapping / SCANNING</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            color: #fff;
+            overflow-y: scroll;
+        }
+        h1 {
+            color: #6ee7b7;
+        }
+        h2 {
+            color: #333333;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.6;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        section {
+            background-color: rgba(255, 255, 255, 0.8); /* Lighter and less transparent white */
+            
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+		}
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+
+
+        code {
+            display: block;
+            font-family: "Courier New", monospace;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            color: #6ee7b7;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>NMAP - Network Mapping / SCANNING</h1>
+    </header>
+    
+    <section>
+        <h2>NMAP Port Scan</h2>
+
+        <p>To perform a basic port scan using Nmap, you can use the following command:</p>
+
+        <code>nmap [target]</code>
+
+        <p>Replace [target] with the IP address or hostname of the target system you want to scan.</p>
+
+        <p>For example:</p>
+		
+        
+		
+        <code>nmap 192.168.1.1</code>
+		
+		
+
+        <p>This command will perform a default scan on the target system, identifying open ports and services.</p>
+
+        <p>If you want to specify a range of ports or a specific set of ports, you can use the <code>-p</code> option. For instance, to scan ports 80, 443, and 8080, you can use:</p>
+
+        <code>nmap -p 80,443,8080 192.168.1.1</code>
+
+        <p>Nmap also provides various scan options for more advanced scanning techniques. Here's an example of a more comprehensive scan:</p>
+
+        <code>nmap -p 1-1000 -sV -sC 192.168.1.1</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-p 1-1000:</code> Specifies a range of ports from 1 to 1000.</li>
+            <li><code>-sV:</code> Enables service version detection.</li>
+            <li><code>-sC:</code> Runs default scripts to discover additional information.</li>
+        </ul>
+    </section>
+	
+	<section>
+        <h2>SCANNING</h2>
+
+	    <h2>1. Host Discovery</h2>
+
+        <p>Host discovery is the process of identifying and determining the availability of active hosts (devices or systems) on a network. In the context of network scanning and security assessments, host discovery is a fundamental step to understand the scope of a network, identify live systems, and gather information about potential targets.</p>
+
+        <p>Host discovery methods vary, and different tools may use various techniques to determine if a host is reachable or online. Some common host discovery methods include:</p>
+		
+		<p>Host discovery methods vary, and different tools may use various techniques to determine if a host is reachable or online. Some common host discovery methods include:</p>
+
+
+	</section>
+	
+	<section>
+	    <h2> a. ARP PING SCAN</h2>
+
+        <p>ARP (Address Resolution Protocol) Scans: On local networks, ARP can be used to discover hosts by sending ARP requests and listening for responses.</p>
+		
+		<p>To perform a ARP PING SCAN using Nmap, you can use the following command:</p>
+		
+		<code> nmap -sn -PR [IP_ADDRESS]  </code>
+		
+		<p>For example:</p>
+		
+		<code> nmap -sn -PR 192.168.1.1  </code>
+		
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sn:</code> This option instructs Nmap not to perform a port scan. It essentially tells Nmap to only conduct host discovery without going into the detailed examination of open ports.</li>
+            <li><code>-PR:</code> This command performs an ARP ping scan (-PR).</li>
+        </ul>
+		
+
+        <h2> b. UDP PING SCAN </h2>
+
+        <p> A UDP ping scan is a method used by Nmap to discover live hosts on a network by sending UDP packets and listening for responses. </p>
+
+        <p>To perform a UDP PING SCAN using Nmap, you can use the following command:</p>
+
+
+        <code>nmap -sn -PU 192.168.1.1  </code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sn:</code> This option instructs Nmap not to perform a port scan. It essentially tells Nmap to only conduct host discovery without going into the detailed examination of open ports.</li>
+            <li><code>-PU:</code> This command performs an UDP ping scan (-PU).</li>
+        </ul>
+
+
+        <h2>c. ICMP ECHO PING SCAN</h2>
+
+
+
+        <p> An ICMP Echo (ping) scan is a straightforward method of host discovery in which the scanning tool (like Nmap) sends ICMP Echo Request packets to potential hosts and listens for ICMP Echo Reply responses. This type of scan is commonly used to quickly determine if hosts are online. </p>
+
+
+        <p>To perform a ICMP ECHO PING SCAN using Nmap, you can use the following command:</p>
+        
+        
+        
+        <p>For example:</p>
+        
+        <code> nmap -sn -PE 192.168.1.1  </code>
+        
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sn:</code> This option instructs Nmap not to perform a port scan. It essentially tells Nmap to only conduct host discovery without going into the detailed examination of open ports.</li>
+            <li><code>-PE:</code> This command performs an  ICMP ECHO PING SCAN </li>
+        </ul>
+
+
+        <h2>ICMP echo ping sweep </h2>
+
+        <p>This command will send ICMP Echo Request (ping) messages to each IP address in the specified range and listen for ICMP Echo Reply responses. It's a quick way to discover live hosts on a network. </p>
+
+        <p>Keep in mind that some hosts or networks may have firewalls or other security measures in place that block ICMP ping requests, so the absence of a response does not necessarily mean the host is down.  </p>
+
+         <p>For example:</p>
+        
+        <code> nmap -sn -PE 192.168.1.0/24  </code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sn:</code> This option instructs Nmap not to perform a port scan. It essentially tells Nmap to only conduct host discovery without going into the detailed examination of open ports.</li>
+            <li><code>-PE:</code> This command performs an  ICMP ECHO PING SCAN sweep </li>
+        </ul>
+
+
+        <h2>ICMP timestamp ping scan</h2>
+
+        <P>An ICMP timestamp ping scan is a specific type of network reconnaissance conducted using ICMP (Internet Control Message Protocol) timestamp requests. This scan is typically performed using tools like Nmap. The primary goal of this scan is to determine the uptime and system clock information of a target host</P>
+
+        <p>For example:</p>
+        
+        <code>nmap -PE -PP --reason 192.168.1.0  </code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-PE:</code> This command performs an  ICMP ECHO PING SCAN </li>
+            <li><code>-PP:</code> This command performs an  ICMP TIMESTAMP PING SCAN</li>
+        </ul>
+
+
+        <h2>ICMP ADDRESS MASK PING SCAN</h2>
+
+        <p>An ICMP Address Mask Ping Scan is a type of network reconnaissance that uses ICMP (Internet Control Message Protocol) address mask requests to gather information about target hosts on a network. This type of scan is less common than ICMP echo requests (ping) or ICMP timestamp requests, but it serves a similar purpose in the host discovery process.</p>
+
+        <p>In an ICMP Address Mask Ping Scan, the scanning tool sends ICMP address mask requests to the target hosts. These requests ask the target systems to respond with their subnet mask information. By analyzing the responses, the scanning tool can gain insights into the network topology and potentially identify misconfigured or unusual subnet mask settings on target hosts.</p>
+
+        <p>For example:</p>
+        
+        <code>nmap -PE -PM --reason 192.168.1.0  </code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-PE:</code> This command performs an  ICMP ECHO PING SCAN </li>
+            <li><code>-PM:</code> This command performs an  ICMP ADDRESS MASK PING SCAN</li>
+        </ul>
+
+
+        <h2> TCP SYN PING SCAN </h2>
+
+        <p>A TCP SYN Ping Scan is a type of network reconnaissance technique that uses TCP SYN packets to discover hosts on a network. In this scan, the tool sends a TCP SYN packet (half-open connection) to the target host. If the target host responds with a TCP SYN-ACK packet, it indicates that the port is open, and the host is considered alive. If the target responds with a TCP RST (reset) packet, the port is closed.</p>
+
+        <p>For example:</p>
+        
+        <code>nmap -sn -PS --reason 192.168.0.0/24 </code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-PS:</code>  This option enables TCP SYN (half-open) ping scan. It sends TCP SYN packets to the specified ports for host discovery. </li>
+           
+        </ul>
+
+
+        <h2>  TCP ACK Ping Scan  </h2>
+
+        <p>A TCP ACK Ping Scan is a type of network reconnaissance that uses TCP ACK (acknowledgment) packets to discover hosts on a network. In this type of scan, the tool sends TCP ACK packets to the target hosts. The response (or lack of response) can provide information about the state of the ports on the target host.</p>
+
+        <p> In a TCP ACK Ping Scan, the tool sends TCP ACK packets to the target ports, and the responses can provide information about the state of those ports. This type of scan can be useful for detecting hosts that might be silently dropping packets or identifying hosts that have certain ports open.</p>
+
+        <p>For example:</p>
+        
+        <code>nmap -sn -PA --reason 192.168.0.0/24 </code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-PS:</code>  This option enables TCP ACK (acknowledgment) ping scan. It sends TCP ACK packets to the specified ports for host discovery. </li>
+           
+        </ul>
+
+
+
+
+
+         <h2>  IP PROTOCOL PING SCAN  </h2>
+
+        <p>An IP Protocol Ping Scan, or simply an IP Protocol Scan, is a network reconnaissance technique that involves scanning a target system to identify the supported network-layer protocols. In this type of scan, the tool sends packets with different IP protocols (other than the default ICMP) to the target system, and based on the responses or lack thereof, it determines which IP protocols are supported.</p>
+
+        <p> Keep in mind that not all systems respond to IP protocol scans, and the effectiveness of this type of scan can depend on the target's firewall settings and network configuration.</p>
+
+        <p>For example:</p>
+        
+        <code>nmap -PO --reason 192.168.0.0/24</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-PO:</code>  : This option enables IP protocol scan. It sends packets with different IP protocols to the target system. </li>
+           
+        </ul>
+    </section>
+
+    <section>
+        <h2>2 PORT AND SERVICE DISCOVERY</h2>
+
+        <p>Port and service discovery is a crucial aspect of network reconnaissance, helping identify which services are running on a target system and which ports are open. Various tools, including Nmap, are commonly used for this purpose.</p>
+
+
+        <h2>TCP Connect Scan/FULL-OPEN SCAN</h2>
+
+        <p> A TCP Connect Scan, often referred to as a full connect scan, is a basic and straightforward port scanning technique used to determine which TCP ports on a target system are open, closed, or filtered. This scan type is one of the simplest and most detectable methods, as it involves completing a full three-way TCP handshake for each port being scanned.</p>
+
+        <p>For example:</p>
+        
+        <code>nmap -sT -v 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sT:</code>  : his option specifies a TCP Connect Scan, which involves completing a full three-way TCP handshake for each scanned port. It is more detectable than other scan types but provides accurate results. </li>
+
+            <li><code>-v:</code>  : This option enables verbose output, providing more detailed information about the scan progress and results. </li>
+           
+        </ul>
+
+
+
+        <h2>STEALTH TCP SCANNING</h2>
+
+        <h2>STEALTH TCP SCANNING/ half open scan</h2>
+
+        <p> Stealth TCP scanning, also known as stealth scanning or half-open scanning, is a technique used in network reconnaissance to scan for open ports on a target system while attempting to minimize the chances of detection by intrusion detection systems (IDS) or firewalls. The primary goal is to gather information about open ports and services without completing the full three-way TCP handshake.</p>
+
+        <p>It's important to note that while SYN Stealth Scans are stealthier than TCP Connect Scans (-sT), they are not completely undetectable. Advanced firewalls and intrusion detection systems may still detect such scans.</p>
+
+        <p>For example:</p>
+        
+        <code>nmap -sS -v 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sS:</code>  This option specifies a SYN Stealth Scan, which is a stealthy and commonly used scan type.</li>
+
+            <li><code>-v:</code>  : This option enables verbose output, providing more detailed information about the scan progress and results. </li>
+           
+        </ul>
+
+
+        <h2>STEALTH TCP SCANNING/ INVERSE TCP FLAG SCAN</h2>
+
+        <p>In general, TCP flags in a TCP packet include options such as SYN (synchronize), ACK (acknowledge), FIN (finish), RST (reset), PSH (push), and URG (urgent), among others. Scanning techniques involve manipulating these flags to gather information about the state of ports on a target system.</p>
+
+        <h2>STEALTH TCP SCANNING/ INVERSE TCP FLAG SCAN / XMAS SCAN</h2>
+
+        <p>The XMAS Scan is a type of TCP port scan used in network reconnaissance to identify open ports on a target system.</p>
+
+        <p>In a XMAS Scan, the following TCP flags are set:</p>
+
+        <ul>
+            <li><code>FIN (Finish): 1</code>  </li>
+
+            <li><code>URG (Urgent): 1</code> </li>
+
+             <li><code>PSH (Push): 1</code> </li>
+           
+        </ul>
+
+        <p>Here's an example of how to perform a XMAS Scan using Nmap:</p>
+
+        <code>nmap -sX -p 1-100 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sX:</code>  This option specifies a XMAS Scan.</li>
+
+            <li><code>-p 1-100: </code>  :  This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+
+           
+        </ul>
+
+
+        <h2>STEALTH TCP SCANNING/ INVERSE TCP FLAG SCAN / FIN scan</h2>
+
+        <p>A FIN scan is a type of TCP port scan used in network reconnaissance. In this scan, the scanning tool sends TCP packets with the FIN (finish) flag set to the target system's ports. The FIN flag indicates the end of a TCP connection, and an open port should respond to the FIN packet with a TCP RST (reset) if the port is closed, and it should ignore the packet if the port is open.</p>
+
+        <p>Here's an example of how to perform a FIN scan using Nmap:</p>
+
+        <code>nmap -sF -p 1-65535 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sF:</code>  This option specifies a FIN scan.</li>
+
+            <li><code>-p 1-100: </code>  :  This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+
+           
+        </ul>
+
+
+
+
+
+
+        <h2>STEALTH TCP SCANNING/ INVERSE TCP FLAG SCAN / NULL scan</h2>
+
+        <p>A NULL scan is a type of TCP port scan used in network reconnaissance. In a NULL scan, the scanning tool sends TCP packets with no flags (NULL flags) set to the target system's ports. The NULL flag means that none of the TCP control flags (FIN, SYN, RST, PSH, ACK, URG) are set in the TCP header.</p>
+
+        <p>In a NULL scan, the behavior of the target system can reveal whether a port is open or closed. If a port is closed, it should respond to a NULL packet with a TCP RST (reset). If a port is open, it should not respond at all.</p>
+
+        <p>Here's an example of how to perform a NULL scan using Nmap:</p>
+
+        <code>nmap -sN -p 1-65535 192.168.0.105</code>
+
+         <p>In this example:</p>
+
+        <ul>
+            <li><code>-sN:</code>  This option specifies a NULL scan.</li>
+
+            <li><code>-p 1-100: </code>  :  This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+
+           
+        </ul>
+
+
+        <h2>STEALTH TCP SCANNING/ INVERSE TCP FLAG SCAN / Tcp maimon scan</h2>
+
+        <p>The Maimon Scan is similar to NULL, FIN, and Xmas scans, but it uses the FIN/ACK flags in the TCP packets.</p>
+
+        <p>Here's an example of how to perform a Maimon Scan using Nmap:</p>
+
+        <code>nmap -sM -v -p 1-65535 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sM:</code>  This option specifies a NULL scan.</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+
+
+        <h2>STEALTH TCP SCANNING/ INVERSE TCP FLAG SCAN / ACK FLAG PROBE SCAN</h2>
+
+        <P>Attackers send TCP probe packets with the ACK flag set to a remote device and then analyze the header information (TTL and WINDOW field) of the received RST packets to find out if the port is open is closed.</P>
+
+        <p>The ACK flag probe scan exploits the vulnerabilities within the BSD-derived TCP/IP stack. Thus, such scanning is effective only on those OSs and platforms on which the BSD derives TCP/IP stacks.</p>
+
+
+        <h2>STEALTH TCP SCANNING / INVERSE TCP FLAG SCAN / ACK FLAG PROBE SCAN / TTL-Based ACK FLAG PROBE SCAN</h2>
+
+        <p> A TTL (Time-To-Live) based ACK scan is a type of TCP scan where the scanning tool analyzes the TTL values in the responses from the target system to determine the operating system of the target. The idea is to send TCP ACK (Acknowledge) packets to closed ports and observe the TTL values in the responses. </p>
+
+        <p>in this scanning technique you will first need to send ACK probe packets (several thousands) to different tcp ports and then analyze the TTL field value of the RST packets received.</p>
+
+        <p>if the TTL value of the RST packet on particular port is less than the boundary value of 64, then port is open</p>
+
+
+        <p>Here's an example of how to perform a TTL-Based ACK FLAG PROBE SCAN using Nmap:</p>
+
+        <code>nmap -p 1-63333 -v --ttl &lt;TTL_VALUE&gt; > 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>--ttl &lt;TTL_VALUE&gt; : </code>  Allows you to set a specific TTL value in the TCP packets. You may need to experiment with different TTL values to observe variations in the responses.</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+
+
+
+
+
+        <h2>STEALTH TCP SCANNING / INVERSE TCP FLAG SCAN / ACK FLAG PROBE SCAN / WINDOW-BASED ACK FLAG PROBE SCANNING</h2>
+
+        <p> in this scanning technique you will first need to send ACK probe packets (several thousands) to different tcp ports and then analyze the window field value of the RST packets received.. </p>
+
+        <p>if the window value of the RST packet on particular port is non-zero, then that port is open</p>
+
+        
+
+        <p>Here's an example of how to perform a WINDOW-BASED ACK FLAG PROBE SCANNING using Nmap:</p>
+
+        <code>nmap -sW -v -p 1-65535 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sW : </code>  This option specifies WINDOW-BASED ACK FLAG PROBE SCANNING</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+
+        <h2>ACK flag probe</h2>
+
+        <p> An ACK flag probe, also known as an ACK scan, is a type of TCP port scanning technique used to determine whether a port on a target system is open, closed, or filtered by a firewall. In an ACK scan, the scanning tool sends TCP packets with only the ACK (Acknowledge) flag set.</p>
+
+        <p>Here's an example of how to perform a ACK flag probe SCANNING using Nmap:</p>
+
+         <code>nmap -sA -v -p 1-65535 192.168.0.105</code>
+
+         <ul>
+            <li><code>-sA : </code>  This option specifies ACK flag probe SCANNING</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+
+
+        
+
+    </section>
+
+
+
+    <section>
+
+        <h2>PORT SCANNING / UDP SCANNING</h2>
+
+        <P>UDP scanning is a technique used in network reconnaissance to identify open UDP (User Datagram Protocol) ports on a target system. Unlike TCP, UDP is a connectionless protocol, and scanning UDP ports can be more challenging because of the lack of a three-way handshake and the non-guaranteed delivery of UDP packets.</P>
+
+        <p>Open UDP Port:</p>
+
+        <ul>
+            <li>1. If a UDP port is open, the target system may respond with a UDP packet, and Nmap considers the port as open.</li>
+
+            <li>2. No response or an ICMP port unreachable message may also indicate an open port. </li>
+
+        </ul>
+
+         <p>Closed UDP Port:</p>
+         <ul>
+            <li>1. If a UDP port is closed, the target system may respond with an ICMP port unreachable message.</li>
+
+            <li>2. No response can also indicate a closed port. </li>
+
+        </ul>
+
+        <p>Here's an example of how to perform a basic UDP scan using Nmap:</p>
+
+        <code>nmap -sU -v -p 1-65535 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sU : </code>  This option specifies UDP SCANNING</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+    </section>
+
+    <section>
+        <h2> SCTP INIT scan </h2>
+
+        <p>An SCTP INIT scan is a technique used in network reconnaissance to identify open SCTP (Stream Control Transmission Protocol) ports on a target system. SCTP is a transport layer protocol that provides features like multi-streaming and multi-homing. The INIT scan involves sending SCTP INIT packets to the target ports to determine their state.</p>
+
+        <p>Here's an example of how to perform a basic SCTP INIT scan using Nmap:</p>
+
+        <code>nmap -sY -v -p 1-65535 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sU : </code>   Specifies an SCTP INIT scan. This is similar to a SYN scan in TCP.</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+
+
+    </section>
+
+    <section>
+        <h2>SCTP COOKIE ECHO</h2>
+
+        <p>In SCTP (Stream Control Transmission Protocol), the COOKIE ECHO chunk is used during the initiation of an association to acknowledge the COOKIE ACK sent by the peer.</p>
+
+        <p>Here's an example of how to perform a basic SCTP COOKIE ECHO scan using Nmap:</p>
+
+        <code>nmap -sZ -v -p 1-65535 192.168.0.105</code>
+
+        <p>In this example:</p>
+
+        <ul>
+            <li><code>-sZ : </code>   Specifies an SCTP COOKIE ECHO</li>
+
+            <li><code>-p 1-65535: </code> This option specifies the range of ports to be scanned (replace with the desired port range). </li>
+
+            <li><code>-v</code> Enables verbose output, providing more detailed information about the scan progress and results.</li>
+
+        </ul>
+    </section>
+
+    <section>
+        <h2>SSDP SCAN</h2>
+
+        <p>SSDP (Simple Service Discovery Protocol) is a network protocol used for service discovery and announcement on a local network. SSDP is often associated with the discovery of UPnP (Universal Plug and Play) devices. If you want to perform a scan for SSDP devices using Nmap, you can use the NSE (Nmap Scripting Engine) scripts designed for SSDP.</p>
+
+        <p>Here's an example of how to perform an SSDP scan with Nmap IN KALI LINUX: </p>
+
+        <code>sudo nmap -p 1900 --script=upnp-discover 192.168.0.105 </code>
+
+
+    </section>
+
+    
+	
+
+</body>
+</html>
